@@ -1,0 +1,25 @@
+{
+  "name": "yt",
+  "version": "1.0.0",
+  "description": "All my yt videos that require to have some codes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThePrimeagen/yt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThePrimeagen/yt/issues"
+  },
+  "homepage": "https://github.com/ThePrimeagen/yt#readme",
+  "dependencies": {
+    "@types/node": "^14.11.4",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
