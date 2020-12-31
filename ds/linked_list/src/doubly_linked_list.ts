@@ -127,12 +127,14 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
     if (node.next && node.prev) {
       node.next.prev = node.prev;
       node.prev.next = node.next;
-    } else if (node.prev === null) {
+    } else if (node.prev === null && node.next) {
       node.next.prev = node.prev;
       this.head = node.next;
-    } else {
+    } else if (node.next === null && node.prev) {
       node.prev.next = node.next;
       this.tail = node.prev;
+    } else {
+      this.head = this.tail = null;
     }
 
     --this._size;
