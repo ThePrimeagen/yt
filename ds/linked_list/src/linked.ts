@@ -46,7 +46,6 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
         }
         if (this._size === 0) {
             this.head = this.tail = node;
-            return;
         } else {
             this.tail.next = node;
             node.previous = this.tail;
@@ -59,20 +58,16 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
         if (this._size === 0) {
             return null;
         }
-        // if (this._size === 1) {
-        //     const item = this.head.data;
-        //     this.head = this.tail = null;
-        //     this._size = 0;
-        //     return item;
-        // }
+        if (this._size === 1) {
+            const item = this.head.data;
+            this.head = this.tail = null;
+            this._size = 0;
+            return item;
+        }
         const item = this.head.data;
         this.head = this.head.next;
         this.head.previous = null;
         --this._size;
-
-        if (this._size === 0) {
-            this.tail = null;
-        }
 
         return item;
     }
@@ -97,31 +92,28 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
         if (this._size === 0) {
             return null;
         }
-        // if (this._size === 1) {
-        //     const item = this.head.data;
-        //     this.head = this.tail = null;
-        //     this._size = 0;
-        //     return item;
-        // }
+        if (this._size === 1) {
+            const item = this.head.data;
+            this.head = this.tail = null;
+            this._size = 0;
+            return item;
+        }
         const item = this.tail.data;
         this.tail = this.tail.previous;
         this.tail.next = null;
         --this._size;
 
-        if (this._size === 0) {
-            this.head = this.tail = null;
-        }
         return item;
     }
 
     getAt(index: number): T | null {
-        // We start index at 0
-        if (index - 1 > this._size) {
+        // We start at index 1 (should be 0 may be)
+        if (index === 0 || index - 1 > this._size) {
             return null;
         }
 
         let node;
-        if (index - 1 < this._size - index - 1) {
+        if (index < this._size - index) {
             node = this.head;
             let i = 0;
             while (i < index) {
@@ -130,8 +122,8 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
             }
         } else {
             node = this.tail;
-            let i = this._size;
-            while (i + 1 > index) {
+            let i = this._size - 1;
+            while (i > index) {
                 node = node.previous;
                 i--;
             }
@@ -140,7 +132,7 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
     }
 
     insertAt(index: number, data: T): void {
-        if (index - 1 > this._size) {
+        if (index === 0 || index - 1 > this._size) {
             return null;
         }
 
@@ -150,7 +142,7 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
             next: null
         }
         let node;
-        if (index - 1 < this._size - index - 1) {
+        if (index < this._size - index) {
             node = this.head;
             let i = 0;
             while (i < index) {
@@ -172,7 +164,7 @@ export class DoublyLinked<T> implements IDoublyLinked<T> {
     }
 
     removeAt(index: number): T {
-        if (index - 1 > this._size) {
+        if (index === 0 || index - 1 > this._size) {
             return null;
         }
 
