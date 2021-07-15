@@ -1,5 +1,6 @@
 export interface DataNode<T> {
     data: T;
+    previous: DataNode<T> | null;
     next: DataNode<T> | null;
 }
 
@@ -28,6 +29,174 @@ export interface IDoublyLinked<T> {
     size(): number;
 }
 
+export class DoublyLinked<T> implements IDoublyLinked<T> {
+    private _size: number;
+    private head: DataNode<T> | null;
+    private tail: DataNode<T> | null;
+    constructor() {
+        this._size = 0;
+        this.head = this.tail = null;
+    }
+
+    enqueue(data: T): void {
+        const node: DataNode<T> = {
+            data,
+            previous: null,
+            next: null,
+        }
+        if (this._size === 0) {
+            this.head = this.tail = node;
+        } else {
+            this.tail.next = node;
+            node.previous = this.tail;
+            this.tail = this.tail.next;
+        }
+        ++this._size;
+    }
+
+    dequeue(): T | null {
+        if (this._size === 0) {
+            return null;
+        }
+        if (this._size === 1) {
+            const item = this.head.data;
+            this.head = this.tail = null;
+            this._size = 0;
+            return item;
+        }
+        const item = this.head.data;
+        this.head = this.head.next;
+        this.head.previous = null;
+        --this._size;
+
+        return item;
+    }
+
+    push(data: T): void {
+        const node: DataNode<T> = {
+            data,
+            previous: null,
+            next: null
+        };
+        if (this._size === 0) {
+            this.head = this.tail = node;
+        } else {
+            this.tail.next = node;
+            node.previous = this.tail;
+            this.tail = this.tail.next;
+        }
+        ++this._size;
+    }
+
+    pop(): T | null {
+        if (this._size === 0) {
+            return null;
+        }
+        if (this._size === 1) {
+            const item = this.head.data;
+            this.head = this.tail = null;
+            this._size = 0;
+            return item;
+        }
+        const item = this.tail.data;
+        this.tail = this.tail.previous;
+        this.tail.next = null;
+        --this._size;
+
+        return item;
+    }
+
+    getAt(index: number): T | null {
+        // We start at index 1 (should be 0 may be)
+        if (index === 0 || index - 1 > this._size) {
+            return null;
+        }
+
+        let node;
+        if (index < this._size - index) {
+            node = this.head;
+            let i = 0;
+            while (i < index) {
+                node = node.next;
+                i++;
+            }
+        } else {
+            node = this.tail;
+            let i = this._size - 1;
+            while (i > index) {
+                node = node.previous;
+                i--;
+            }
+        }
+        return node.data;
+    }
+
+    insertAt(index: number, data: T): void {
+        if (index === 0 || index - 1 > this._size) {
+            return null;
+        }
+
+        const newNode: DataNode<T> = {
+            data,
+            previous: null,
+            next: null
+        }
+        let node;
+        if (index < this._size - index) {
+            node = this.head;
+            let i = 0;
+            while (i < index) {
+                node = node.next;
+                i++;
+            }
+        } else {
+            node = this.tail;
+            let i = this._size;
+            while (i + 1 > index) {
+                node = node.previous;
+                i--;
+            }
+        }
+        newNode.previous = node.previous;
+        node.previous.next = newNode;
+        newNode.next = node;
+        ++this._size;
+    }
+
+    removeAt(index: number): T {
+        if (index === 0 || index - 1 > this._size) {
+            return null;
+        }
+
+        let node;
+        if (index - 1 < this._size - index - 1) {
+            node = this.head;
+            let i = 0;
+            while (i < index) {
+                node = node.next;
+                i++;
+            }
+        } else {
+            node = this.tail;
+            let i = this._size;
+            while (i + 1 > index) {
+                node = node.previous;
+                i--;
+            }
+        }
+        const item = node;
+        node.previous.next = item.next;
+        node.next.previous = item.previous;
+        --this._size;
+
+        return item.data;
+    }
+
+    size() {
+        return this._size;
+    }
+}
+
 export class Queue<T> implements IQueue<T> {
     private _size: number;
     private head: DataNode<T> | null;
@@ -44,6 +213,7 @@ export class Queue<T> implements IQueue<T> {
     enqueue(data: T): void {
         const node: DataNode<T> = {
             data,
+            previous: null,
             next: null
         };
 
@@ -98,6 +268,7 @@ export class Stack<T> implements IStack<T> {
     push(data: T): void {
         const node: DataNode<T> = {
             data,
+            previous: null,
             next: null
         };
 
