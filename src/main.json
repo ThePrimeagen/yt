@@ -1,0 +1,14 @@
+{
+    "mySuperCoolId": 69420
+    "someEventThingHere": ["foo", "bar", "baz"],
+    "mySessionId": "1337-420-69-b00b1E5",
+    "pen15SessionId": "pen15-51pen",
+    "generatedSessionTokenId": "something-with-characters-in-it",
+    "digestTheseStrings": "some-value-here",
+    "vimId": 42069,
+    "buildId": 1337,
+    "anotherNumber": 0xbabecafe,
+    "time": 0xdeadbeef,
+    "type": ["type1", "type2"],
+}
+
