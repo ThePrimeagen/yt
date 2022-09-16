@@ -17,7 +17,7 @@ https://youtu.be/1cKqAmxHVdQ?t=15
 ** meme this up hard **
 
 ### A Note about vimming in general
-There are two general branches of vimming.
+There are two general branches of vimming as you become an expert.
 
 1. The Chess Player
 1. The Primeagen
@@ -32,7 +32,9 @@ out if there is a better way
 
 For me, its about ingraining motions until they are so second nature that your
 speed is incredible.  Then, I know a lot of people will disagree, find
-something better.
+something better.  I never have problems changing muscle memory when I have
+mastered something.  Its when I am learning that its hard to constantly switch
+directions.
 
 ###  So if you are looking for a tutorial...
 on how to use vim: check out my 6 part series on yt, or my frontendmasters.com
@@ -73,18 +75,29 @@ series has re-ignited my passion for that project.
 This game is what got me good at relative line number jumping.  And f/t with
 ,;, needs some much needed updates.  I am going to give it to ya :)
 
-Once you get that mastered
-you got to start using f and t
+you are officially ... now (maidenless)
 
 ### Something you may not know
 VD vs dd, VY vs yy
 
-go into v[i/a]{
-you can use it with c,d,y...
+Sometimes its not about being the fastest, but about having the most fun.
+Let me give you an example.
 
+### One of my principals for speed
+two/there key combos feel like one key
+
+A note about f/t/F/T keys
+
+### More advanced
 Replacing.
 viw, diW, ciw really come into play
 long type copy/paste
+
+// T<space>;yt)f<pa><esc>
+// T<space>;yf)f<pr>
+// FyyiWf<pr>
+fn some_function(arg: some::long::type) -> Result< {
+}
 
 function foo(blaz: {oddly: "long" | "type", but: "hey" | "this" | "is | number}) {
 }
@@ -92,6 +105,12 @@ function foo(blaz: {oddly: "long" | "type", but: "hey" | "this" | "is | number})
 // 3kya{3jf)hviwp
 function new_fn(bar: number) {
 }
+
+mixing in registers.  They are amazing.
+<leader>p is for pwn
+
+go into v[i/a]{
+you can use it with c,d,y...
 
 // why not find and replace
 the find you can shortcut / replace
@@ -106,5 +125,6 @@ _, 0, I, A, $
 // For when prettier strikes
 // Super combos
 f{a<CR><C-o>O
+$i<CR><Esc>O
 
 
