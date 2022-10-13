@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+fun() {
+    node ./test.js $1 $2 10 | tee $3_$1_$2
+}
+
+fun 0 25 $1
+fun 1 25 $1
+
